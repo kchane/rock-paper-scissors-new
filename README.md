@@ -1,0 +1,1 @@
+This project is meant to play rock, paper, scissors against the computer. For now, it will just be played within the console but in the future I plan to implement a GUI for the game.
