@@ -12,15 +12,13 @@ function computerPlay() {
     return computerChoice;
 }
 
-// // receive player choice and computer choice
-let playerChoice = 'rock'
-// const computerChoice = computerPlay();
+// receive player choice and computer choice
+// let playerChoice = 'rock'
 
 // play 1 round
 function playRound() {
-    playerChoice = prompt('Rock, Paper, or Scissors')
+    const playerChoice = prompt('Rock, Paper, or Scissors')
     const computerChoice = computerPlay();
-    
     let result;
 // if player chooses rock    
     if (playerChoice == 'rock') {
@@ -54,41 +52,41 @@ function playRound() {
         }
 // if player enters a different option
     } else if (playerChoice == null){
+        result = null
         return;
     } else {
-        alert('Please enter a valid selection', '')
-        playRound(playerChoice)
+        alert('Please enter a valid selection');
+        playRound();
     } 
     return result;
 }
 
-// function to play 5 rounds determines best 2/3
+// function to play rounds determines first to 5 wins
 function game() {
     let playerScore = 0;
     let computerScore = 0
-    // while (playerScore < 3 || computerScore < 3) {
-        // for (i = 0; i < 5; i++) {
         do {
-            // playerChoice = prompt('Rock, paper, or scissors');
-            let roundResult = playRound(playerChoice)
-            // console.log(`You chose: ${playerChoice} and I chose ${computerChoice}.`)
-            // console.log(result)
-            if (roundResult == 'You Win!') {
+            let roundResult = playRound()
+            if (roundResult == null) {
+                return;
+            } 
+              else if (roundResult == 'You Win!') {
                 console.log(roundResult);
                 playerScore++;
             } else if(roundResult == 'You Lose') {
                 console.log(roundResult);
                 computerScore++;
-            } else {
+            } else if (roundResult == 'Draw') {
                 console.log(roundResult);
+            } else {
+                continue;
             }
             console.log(`Your score: ${playerScore}`);
             console.log(`My score: ${computerScore}`);
-        } while (playerScore < 3 && computerScore < 3);
-    // }
-    if (playerScore == 3) {
+        } while (playerScore < 5 && computerScore < 5);
+    if (playerScore == 5) {
         return console.log('Congrats, you won the game!')
-    } else if (computerScore == 3) {
+    } else if (computerScore == 5) {
            return console.log('I won the game')
         }
 }
