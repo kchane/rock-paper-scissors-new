@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.score {
+    display: flex;
+    margin-top: 5px;
+}
+
+.pscore,
+.cscore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    color: white;
+    font-weight: bolder;
+    padding: 4px 0px;
+}
+
+.pscore {
+    background-color: #191970;
+}
+
+.cscore {
+    background-color: black;
+}
+
+.restart {
+    border-radius: 0;
+    border: 0;
+    padding: 5px 12px;
+}
+
+.selecttitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+img {
+    width: 275px;
+}
