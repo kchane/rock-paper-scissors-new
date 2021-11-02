@@ -9,18 +9,36 @@
 </head>
 <body>
     <div class="header">
-        <h1>Rock Paper Scissors</h1>
+        <img class="logo" src="images/logo.svg" alt="logo">
+        <div class="pscore">
+            <div class="scoretext">Player Score</div>
+            <div class="scorenumber">0</div>
+        </div>
+        <div class="cscore">
+            <div class="scoretext">Computer Score</div>
+            <div class="scorenumber">0</div>
+        </div>
     </div>
-    <button class="restart">Restart Game</button>
-    <div class="score">
-        <div class="pscore">Player Score: 0</div>
-        <div class="cscore">Computer Score: 0</div>
-    </div>
+
     <div class="selecttitle">Make Your Selection</div>
     <div class="choices">
-        <img src="images/noun_rock_88661.png" alt="Rock">
-        <img src="images/noun_Paper_88662.png" alt="Paper">
-        <img src="images/noun_lizard_88663.png" alt="Scissors">
+        <ul>
+            <li>
+                <div class="rock">
+                    <img src="images/icon-rock.svg" alt="Rock">
+                </div>
+            </li>
+            <li>
+                <div class="paper">
+                    <img src="images/icon-paper.svg" alt="Paper">
+                </div>
+            </li>
+            <li>
+                <div class="scissors">
+                    <img src="images/icon-scissors.svg" alt="Scissors"> 
+                </div>
+            </li>
+        </ul>
     </div>
 <script src="rps.js"></script>
 </body>

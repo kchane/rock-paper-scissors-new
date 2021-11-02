@@ -1,52 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;600&display=swap');
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
+    background-color: #404464;
+    font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
-.score {
+.header {
     display: flex;
-    margin-top: 5px;
+    width: 550px;
+    justify-content: space-around;
+    border: 3px solid #666;
+    border-radius: 18px;
+    padding: 15px 0px;
 }
 
 .pscore,
 .cscore {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 450px;
-    color: white;
+    text-align: center;
+    background: white;
+    color: #404464;
+    padding: 5px 15px;
+    border-radius: 10px;
+    width: 105px;
+}
+
+.scorenumber {
+    font-size: 75px;
     font-weight: bolder;
-    padding: 4px 0px;
+    margin-top: 0px;
 }
 
-.pscore {
-    background-color: #191970;
-}
-
-.cscore {
-    background-color: black;
-}
-
-.restart {
-    border-radius: 0;
-    border: 0;
-    padding: 5px 12px;
+.scoretext {
+    font-size: 14px;
+    font-weight: bolder;
 }
 
 .selecttitle {
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: 32px;
+    margin: 20px 0px;
+    color: white;
+    font-weight: 700;
 }
 
-.choices {
+.choices ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    top: 50%;
+    left: 50%;
+}   
+
+ul li {
+    list-style: none;
+    margin: 0 30px;
+}
+
+ul li div {
+    width: 75px;
+    height: 75px;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    align-items: center;
+    background: white;
+    font-size: 30px;
+    transition: .5s;
+    border-radius: 50%;
+    padding: 10px;
 }
 
-img {
-    width: 275px;
+ul li div:hover {
+    transform: scale(1.1);
 }
+
+ul li .rock {
+    border: 10px solid red;
+}
+
+ul li .rock img {
+    position: relative;
+}
+
+ul li .paper {
+    border: 10px solid purple;
+}
+
+ul li .scissors {
+    border: 10px solid yellow;
+}
+

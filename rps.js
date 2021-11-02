@@ -19,8 +19,7 @@ function computerPlay() {
 function playRound() {
     const playerChoice = prompt('Rock, Paper, or Scissors')
     const computerChoice = computerPlay();
-    let result;
-// if player chooses rock    
+    let result;   
     if (playerChoice == 'rock') {
         console.log(`You chose: Rock and I chose ${computerChoice}.`)
         if (computerChoice == 'paper') {
@@ -30,7 +29,6 @@ function playRound() {
         } else {
             result = 'Draw';
         }
-// if player chooses paper
     } else if (playerChoice == 'paper') {
         console.log(`You chose: Paper and I chose ${computerChoice}.`)
         if (computerChoice == 'rock') {
@@ -40,7 +38,6 @@ function playRound() {
         } else {
             result = 'Draw';
         }
-// if player chooses scissors
     } else if (playerChoice == 'scissors') {
         console.log(`You chose: Scissors and I chose ${computerChoice}.`)
         if (computerChoice == 'rock') {
@@ -50,7 +47,6 @@ function playRound() {
         } else {
             result = 'Draw';
         }
-// if player enters a different option
     } else if (playerChoice == null){
         result = null
         return;
