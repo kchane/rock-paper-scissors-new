@@ -116,3 +116,14 @@ button {
 .counter {
     font-size: 50px;
 }
+
+.winner {
+    border: 8px solid rgb(8, 168, 8);
+}
+
+.loser {
+    border: 8px solid red;
+}
+.draw {
+    border: 8px solid yellow;
+}

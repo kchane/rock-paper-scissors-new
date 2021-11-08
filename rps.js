@@ -50,7 +50,7 @@ function playRound(playerChoice) {
     return result;
 }  
 
-const choices = document.querySelector('.choices');
+const choices = document.querySelectorAll('.choice');
 const pscoreDisplay = document.querySelector('.pscore .scorenumber');
 const cscoreDisplay = document.querySelector('.cscore .scorenumber');
 const restart = document.querySelector('.restart');
@@ -63,30 +63,38 @@ let roundOver = true;
 let pscore = 0;
 let cscore = 0;
 
-choices.addEventListener('click', function (e) {
-    let result = playRound(e.target.className);
-    if (roundOver) { 
-        roundOver = false;
-        if (result == 'You Win!') {
-            pscore++;
-            pscoreDisplay.textContent = pscore;
-        } else if (result == 'You Lose') {
-            cscore++;
-            cscoreDisplay.textContent = cscore;
-        }
-        roundDisplay.textContent = result;
-        dupeChoice(e.target.className);
-        countDown();
-        setTimeout(function() {
-            roundDisplay.textContent = '';
-            removeAllChildren(pchoiceDisplay);
-            removeAllChildren(cchoiceDisplay);
-            counterDisplay.textContent = '';
-            roundOver = true;
-        }, 3000)
-    } 
-})
-
+for (const choice of choices) {
+    choice.addEventListener('click', function (e) {
+        let result = playRound(e.target.className);
+        if (roundOver) { 
+            roundOver = false;
+            roundDisplay.textContent = result;
+            dupeChoice(e.target.className);
+            countDown();
+            if (result == 'You Win!') {
+                pscore++;
+                pscoreDisplay.textContent = pscore;
+                pchoiceDisplay.lastChild.classList.add('winner');
+                cchoiceDisplay.lastChild.classList.add('loser')
+            } else if (result == 'You Lose') {
+                cscore++;
+                cscoreDisplay.textContent = cscore;
+                pchoiceDisplay.lastChild.classList.add('loser');
+                cchoiceDisplay.lastChild.classList.add('winner')
+            } else {
+                pchoiceDisplay.lastChild.classList.add('draw');
+                cchoiceDisplay.lastChild.classList.add('draw')
+            }
+            setTimeout(function() {
+                roundDisplay.textContent = '';
+                removeAllChildren(pchoiceDisplay);
+                removeAllChildren(cchoiceDisplay);
+                counterDisplay.textContent = '';
+                roundOver = true;
+            }, 3000)
+        } 
+    })
+}
 restart.addEventListener('click', function (e) {
     resetGame();
 })
