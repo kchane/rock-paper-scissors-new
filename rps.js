@@ -128,10 +128,15 @@ function removeAllChildren(parent) {
     }
 }
 
-let timeleft = 3;
-var countDown = setInterval(function(){
-    while (timeleft > 0) {
-        counterDisplay.textContent = 'Next Round in: ' + timeleft;
-        timeleft--;
-    }
-}, 1000);
+function countDown() {
+    let i = 2;
+    counterDisplay.textContent = 'Next Round in... ' + 3
+    const counter = setInterval(() => {
+        if (i <= 0) {
+            clearInterval(counter)
+        } else {
+            counterDisplay.textContent = 'Next Round in... ' + i;
+            i--;
+        }
+    }, 1000);
+}
