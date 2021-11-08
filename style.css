@@ -42,7 +42,8 @@ body {
 
 .selecttitle {
     font-size: 32px;
-    margin: 20px 0px;
+    margin-top: 20px;
+    margin-bottom: 5px;
     color: white;
     font-weight: 700;
 }
@@ -60,7 +61,8 @@ ul li {
     margin: 0 30px;
 }
 
-ul li div {
+ul li div,
+.roundDisplay div {
     width: 75px;
     height: 75px;
     display: flex;
@@ -77,19 +79,40 @@ ul li div:hover {
     transform: scale(1.1);
 }
 
-ul li .rock {
-    border: 10px solid red;
+ul li img:hover {
+    transform: rotateY(360deg);
 }
 
-ul li .rock img {
-    position: relative;
+button {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #404464;
+    border: 2px solid #666;
+    color: white;
 }
 
-ul li .paper {
-    border: 10px solid purple;
+.result {
+    font-size: 32px;
+    color: white;
+    font-weight: 700;
 }
 
-ul li .scissors {
-    border: 10px solid yellow;
+.roundDisplay {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 550px;
 }
 
+.result {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter {
+    font-size: 50px;
+}

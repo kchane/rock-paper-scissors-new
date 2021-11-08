@@ -11,15 +11,11 @@ function computerPlay() {
     }
     return computerChoice;
 }
-
-// receive player choice and computer choice
-// let playerChoice = 'rock'
-
+// let computerChoice = computerPlay();
 // play 1 round
-function playRound() {
-    const playerChoice = prompt('Rock, Paper, or Scissors')
-    const computerChoice = computerPlay();
+function playRound(playerChoice) {
     let result;   
+    let computerChoice = computerPlay();
     if (playerChoice == 'rock') {
         console.log(`You chose: Rock and I chose ${computerChoice}.`)
         if (computerChoice == 'paper') {
@@ -47,42 +43,95 @@ function playRound() {
         } else {
             result = 'Draw';
         }
-    } else if (playerChoice == null){
-        result = null
-        return;
-    } else {
-        alert('Please enter a valid selection');
-        playRound();
-    } 
+    }
+    if (roundOver) {
+        dupeComputerChoice(computerChoice);
+    }    
     return result;
+}  
+
+const choices = document.querySelector('.choices');
+const pscoreDisplay = document.querySelector('.pscore .scorenumber');
+const cscoreDisplay = document.querySelector('.cscore .scorenumber');
+const restart = document.querySelector('.restart');
+// const rock = document.querySelector('div .rock');
+const pchoiceDisplay = document.querySelector('.pchoice');
+const cchoiceDisplay = document.querySelector('.cchoice');
+const roundDisplay = document.querySelector('.display')
+const counterDisplay = document.querySelector('.counter')
+let roundOver = true;
+let pscore = 0;
+let cscore = 0;
+
+choices.addEventListener('click', function (e) {
+    let result = playRound(e.target.className);
+    if (roundOver) { 
+        roundOver = false;
+        if (result == 'You Win!') {
+            pscore++;
+            pscoreDisplay.textContent = pscore;
+        } else if (result == 'You Lose') {
+            cscore++;
+            cscoreDisplay.textContent = cscore;
+        }
+        roundDisplay.textContent = result;
+        dupeChoice(e.target.className);
+        countDown();
+        setTimeout(function() {
+            roundDisplay.textContent = '';
+            removeAllChildren(pchoiceDisplay);
+            removeAllChildren(cchoiceDisplay);
+            counterDisplay.textContent = '';
+            roundOver = true;
+        }, 3000)
+    } 
+})
+
+restart.addEventListener('click', function (e) {
+    resetGame();
+})
+
+function resetGame() {
+    pscore = 0;
+    cscore = 0;
+    pscoreDisplay.textContent = pscore;
+    cscoreDisplay.textContent = cscore;
+    roundOver = true;
 }
 
-// function to play rounds determines first to 5 wins
-function game() {
-    let playerScore = 0;
-    let computerScore = 0
-        do {
-            let roundResult = playRound()
-            if (roundResult == null) {
-                return;
-            } 
-              else if (roundResult == 'You Win!') {
-                console.log(roundResult);
-                playerScore++;
-            } else if(roundResult == 'You Lose') {
-                console.log(roundResult);
-                computerScore++;
-            } else if (roundResult == 'Draw') {
-                console.log(roundResult);
-            } else {
-                continue;
-            }
-            console.log(`Your score: ${playerScore}`);
-            console.log(`My score: ${computerScore}`);
-        } while (playerScore < 5 && computerScore < 5);
-    if (playerScore == 5) {
-        return console.log('Congrats, you won the game!')
-    } else if (computerScore == 5) {
-           return console.log('I won the game')
-        }
+// duplicates elements to put in the section that displays the round choices and outcome
+function dupeChoice(choice) {
+    const div = document.createElement('div');
+    div.classList.add(choice);
+    const pic = document.createElement('img');
+    pic.classList.add(choice);
+    pic.src = `images/icon-${choice}.svg`
+    div.appendChild(pic);
+    pchoiceDisplay.textContent = 'Your Choice';
+    pchoiceDisplay.appendChild(div);
 }
+
+function dupeComputerChoice(choice) {
+    const div = document.createElement('div');
+    div.classList.add(choice);
+    const pic = document.createElement('img');
+    pic.classList.add(choice);
+    pic.src = `images/icon-${choice}.svg`
+    div.appendChild(pic);
+    cchoiceDisplay.textContent = 'My Choice';
+    cchoiceDisplay.appendChild(div);
+}
+
+function removeAllChildren(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild)
+    }
+}
+
+let timeleft = 3;
+var countDown = setInterval(function(){
+    while (timeleft > 0) {
+        counterDisplay.textContent = 'Next Round in: ' + timeleft;
+        timeleft--;
+    }
+}, 1000);
